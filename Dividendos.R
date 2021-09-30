@@ -174,5 +174,28 @@ Dividendos_ts
 
 ##Subdividir gráficos por moneda
 
-plot(Base_datos, main="Comportamiento de las variables")
+boxplot(Dividendos2$tot_acc ~ Dividendos2$moneda)
+tot_acc_CLP <- Dividendos2[Dividendos2$moneda == "$", c("tot_acc")]
+tot_acc_CLP
 
+boxplot(tot_acc_CLP)
+
+tot_acc_USD <- Dividendos2[Dividendos2$moneda == "US$", c("tot_acc")]
+tot_acc_USD
+
+boxplot(tot_acc_USD)
+
+tot_acc_EU <- Dividendos2[Dividendos2$moneda == "EURO", c("tot_acc")]
+tot_acc_EU
+
+boxplot(tot_acc_EU)
+
+
+plot(Dividendos2$tot_acc ~ Dividendos2$moneda)
+plot(tot_acc_CLP)
+plot(tot_acc_USD)
+plot(tot_acc_EU)
+
+summary(tot_acc_CLP)
+summary(tot_acc_USD)
+summary(tot_acc_EU)
