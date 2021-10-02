@@ -87,7 +87,7 @@ Dividendos$val_acc.F <- cut(Dividendos$val_acc, breaks = breakPoints, labels = c
   
 summary(Dividendos$val_acc)
 
-# Histograma numero de pasos
+# Histograma valor acciones
 hist(Dividendos$val_acc, main="Valor acciones")
 
 #Rango <- range(0.001,1000)
@@ -111,7 +111,7 @@ boxplot(Dividendos2$tot_acc)
 breakPoints <- c(999, 100000, 10000000, 100000000000, Inf)
 categories <- c("Low", "Medium", "High", "Very High") 
 
-# y cortamos la variable vall_Acc segun esta categorizacion
+# y cortamos la variable tot_acc segun esta categorizacion
 Dividendos2$tot_acc.F <- cut(Dividendos2$tot_acc, breaks = breakPoints, labels = categories)
 
 sapply(Dividendos2, function(Dividendos2) sum(is.na(Dividendos2)))
@@ -133,25 +133,26 @@ boxplot(tot_acc)
 plot(tot_acc)
 
 #Nos fijamos en una empresa (nemo) en particular
-val_acc_CFIVPE4E_E <- Dividendos[Dividendos$nemo == "CFIVPE4E-E", c("val_acc")]
-val_acc_CFIVPE4E_E
+#val_acc_CFIVPE4E_E <- Dividendos[Dividendos$nemo == "CFIVPE4E-E", c("val_acc")]
+#val_acc_CFIVPE4E_E
 
-summary(val_acc_CFIVPE4E_E$val_acc)
+#summary(val_acc_CFIVPE4E_E$val_acc)
 ##Hacemos el diagrama de bigotes
-boxplot(val_acc_CFIVPE4E_E)
+#boxplot(val_acc_CFIVPE4E_E)
 
 ##Lo interesante sería poder dibujar este gráfico de caja y bigotes para cada
 ##usuario. Se puede hacer poniendo la variable «pasos» en función de la variable
 #«usuario».
-boxplot(Dividendos$val_acc ~ Dividendos$nemo)
+boxplot(Dividendos2$tot_acc ~ Dividendos2$nemo)
 
-Dividendos2<-Dividendos2[!(Dividendos2$val_acc %in% Dividendos2_boxplot$out),]
+##Si ejecuto el sig codigo, se eliminan 2000 datos
+#Dividendos2<-Dividendos2[!(Dividendos2$tot_acc %in% Dividendos2_boxplot$out),]
 
-boxplot(Dividendos2$val_acc, col = "skyblue", frame.plot=F)
+boxplot(Dividendos2$tot_acc, col = "skyblue", frame.plot=F)
 
-Dividendos2_boxplot <- boxplot(Dividendos2$val_acc, col = "skyblue", frame.plot=F)
+Dividendos2_boxplot <- boxplot(Dividendos2$val_acc, col = "skyblue", frame.plot=T)
 
-Dividendos2_boxplot2
+Dividendos2_boxplot
 
 outliersReplace <- function(data, lowLimit, highLimit){
   data[data < lowLimit] <- mean(data)
@@ -159,13 +160,13 @@ outliersReplace <- function(data, lowLimit, highLimit){
   data     #devolvemos el dato       
 }
 
-tot_acc_2 <- outliersReplace(tot_acc, 999, 100000000000)
+#tot_acc_2 <- outliersReplace(tot_acc, 999, 100000000000)
 
 str(tot_acc)
 boxplot(Dividendos2$fec_lim)
 
-Dividendos_ts = ts(Dividendos2, start = 2015, frequency = 365)
-Dividendos_ts
+#Dividendos_ts = ts(Dividendos2, start = 2015, frequency = 365)
+#Dividendos_ts
 ###Tratar la base como indice por mientras, despues le especificamos que es serie de tiempo
 ###Reemplazar valores NA en moneda por $
 ###utilizar algun comando ya sea de r o de excel para que se entreguen juntos los valores de la misma fecha
@@ -191,7 +192,7 @@ tot_acc_EU
 boxplot(tot_acc_EU)
 
 
-plot(Dividendos2$tot_acc ~ Dividendos2$moneda)
+#plot(Dividendos2$tot_acc ~ Dividendos2$moneda)
 plot(tot_acc_CLP)
 plot(tot_acc_USD)
 plot(tot_acc_EU)
@@ -199,3 +200,14 @@ plot(tot_acc_EU)
 summary(tot_acc_CLP)
 summary(tot_acc_USD)
 summary(tot_acc_EU)
+
+##Se crean columnas con las conversiones a moneda nacional
+#Valor dolar y euro deben ser actualizados con regularidad (buscar comando)
+val_USD = 803.26 
+
+Dividendos2 <- Dividendos2 %>% mutate( conversion_USD = tot_acc * val_USD)
+
+val_EURO = 931.30
+
+Dividendos2 <- Dividendos2 %>% mutate( conversion_EURO = tot_acc * val_EURO)
+
