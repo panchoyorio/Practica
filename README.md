@@ -1,6 +1,9 @@
 ### Práctica
-##Este repositorio se utilizará para subir documentos y códigos relacionados con mi práctica profesional en Data Fae.
-#Definición de variables: *Se debe tener en cuenta, que estas definiciones son en base a una mera interpretación que se puede realizar sobre los datos, pueden estar sujetas a cambios.
+## Este repositorio se utilizará para subir documentos y códigos relacionados con mi práctica profesional en Data Fae.
+# Definición de variables: 
+
+*Se debe tener en cuenta, que estas definiciones son en base a una mera interpretación que se puede realizar sobre los datos, pueden estar sujetas a cambios.
+
 - descrip_vc: Es una descripción breve del tipo de emisión que se realizó, se incluye la moneda y el valor exacto.
 - fec_lim: Se trata de la fecha límite para realizar el pago de dividendos, aunque en la práctica la función de webscrap considera fec_lim como la fecha final para realizar la extracción de datos.
 - fec_pago: Se trata de la fecha en que se realizará la emision efectiva, aunque en la práctica la función de webscrapping considera fec_pago como la fecha inicial para realizar la extracción de datos.
