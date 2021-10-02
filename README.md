@@ -1,6 +1,6 @@
-### Práctica
+# Práctica
 ## Este repositorio se utilizará para subir documentos y códigos relacionados con mi práctica profesional en Data Fae.
-# Definición de variables: 
+### Definición de variables: 
 
 *Se debe tener en cuenta, que estas definiciones son en base a una mera interpretación que se puede realizar sobre los datos, pueden estar sujetas a cambios.
 
