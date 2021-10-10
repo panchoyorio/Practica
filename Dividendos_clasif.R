@@ -1,0 +1,114 @@
+###Se empieza a trabajar con la base que contiene P*Q, y que posee clasificaciones
+#por nombre de empresa
+
+#file.choose()
+ruta_excel <-  "C:\\Users\\fcoyo\\Documents\\Dividendos_con_PXQ - recuperado.xlsx"
+Dividendos_clasif <- read_excel(ruta_excel,
+                         sheet = "BASE COMPLETA")
+##Eliminamos las ultimas 4 columnas que vienen vacias 
+Dividendos_clasif <- Dividendos_clasif[ ,-19]
+Dividendos_clasif <- Dividendos_clasif[ ,-18]
+Dividendos_clasif <- Dividendos_clasif[ ,-17]
+Dividendos_clasif <- Dividendos_clasif[ ,-16]
+
+##Contamos NA en base
+sapply(Dividendos_clasif, function(Dividendos_clasif) sum(is.na(Dividendos_clasif)))
+
+##Omitimos aquellas acciones con tot_acc = 0 
+##Se pospone el paso hasta saber si usar otra columna para P*Q
+
+##Se realizan bloxpot para cada sector empresarial
+
+boxplot(Dividendos_clasif$tot_acc ~ Dividendos_clasif$Clasificación)
+
+tot_acc_ali <- Dividendos_clasif[Dividendos_clasif$Clasificación == "Alimentos, bebidas y tabaco", c("tot_acc")]
+tot_acc_ali
+
+boxplot(tot_acc_ali)
+
+tot_acc_cfi <- Dividendos_clasif[Dividendos_clasif$Clasificación == "CFI", c("tot_acc")]
+tot_acc_cfi
+
+boxplot(tot_acc_cfi)
+
+tot_acc_cong <- Dividendos_clasif[Dividendos_clasif$Clasificación == "Conglomerados", c("tot_acc")]
+tot_acc_cong
+
+boxplot(tot_acc_cong)
+
+tot_acc_const <- Dividendos_clasif[Dividendos_clasif$Clasificación == "Construcción", c("tot_acc")]
+tot_acc_const
+
+boxplot(tot_acc_const)
+
+tot_acc_consu <- Dividendos_clasif[Dividendos_clasif$Clasificación == "Consumo", c("tot_acc")]
+tot_acc_consu
+
+boxplot(tot_acc_consu)
+
+tot_acc_elec <- Dividendos_clasif[Dividendos_clasif$Clasificación == "Eléctrico", c("tot_acc")]
+tot_acc_elec
+
+boxplot(tot_acc_elec) 
+
+tot_acc_ener <- Dividendos_clasif[Dividendos_clasif$Clasificación == "Energía", c("tot_acc")]
+tot_acc_ener
+
+boxplot(tot_acc_ener) 
+
+tot_acc_ETF <- Dividendos_clasif[Dividendos_clasif$Clasificación == "ETF", c("tot_acc")]
+tot_acc_ETF
+
+boxplot(tot_acc_ETF)
+
+tot_acc_fore <- Dividendos_clasif[Dividendos_clasif$Clasificación == "Forestal", c("tot_acc")]
+tot_acc_fore
+
+boxplot(tot_acc_fore) 
+
+tot_acc_mine <- Dividendos_clasif[Dividendos_clasif$Clasificación == "Minería", c("tot_acc")]
+tot_acc_mine
+
+boxplot(tot_acc_mine)
+
+tot_acc_otros <- Dividendos_clasif[Dividendos_clasif$Clasificación == "Otros", c("tot_acc")]
+tot_acc_otros
+
+boxplot(tot_acc_otros)
+
+tot_acc_rec <- Dividendos_clasif[Dividendos_clasif$Clasificación == "Recreación y servicios educacionales", c("tot_acc")]
+tot_acc_rec
+
+boxplot(tot_acc_rec)
+
+tot_acc_ssal <- Dividendos_clasif[Dividendos_clasif$Clasificación == "Servicios de salud", c("tot_acc")]
+tot_acc_ssal
+
+boxplot(tot_acc_ssal)
+
+tot_acc_sfin <- Dividendos_clasif[Dividendos_clasif$Clasificación == "Servicios financieros", c("tot_acc")]
+tot_acc_sfin
+
+boxplot(tot_acc_sfin)
+
+tot_acc_ssan <- Dividendos_clasif[Dividendos_clasif$Clasificación == "Servicios sanitarios y gas", c("tot_acc")]
+tot_acc_ssan
+
+boxplot(tot_acc_ssan)
+
+tot_acc_tele <- Dividendos_clasif[Dividendos_clasif$Clasificación == "Telecomunicaciones", c("tot_acc")]
+tot_acc_tele
+
+boxplot(tot_acc_tele)
+
+tot_acc_tferr <- Dividendos_clasif[Dividendos_clasif$Clasificación == "Transportes de ferrocarriles y por carreteras", c("tot_acc")]
+tot_acc_tferr
+
+boxplot(tot_acc_tferr)
+
+
+
+tot_acc_tmar <- Dividendos_clasif[Dividendos_clasif$Clasificación == "Transportes y servicios marítimos", c("tot_acc")]
+tot_acc_tmar
+
+boxplot(tot_acc_tmar)
