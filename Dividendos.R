@@ -48,12 +48,12 @@ plot(Dividendos$val_acc)
 
 max (Dividendos$val_acc)
 
-order(Dividendos$val_acc)
+#order(Dividendos$val_acc)
 
-order(Dividendos$val_acc, 
-      decreasing = TRUE, 
-      na.last = TRUE,   
-      method = c("auto", "shell", "radix"))
+#order(Dividendos$val_acc, 
+#      decreasing = TRUE, 
+#      na.last = TRUE,   
+#      method = c("auto", "shell", "radix"))
 #Dividendos[Dividendos$val_acc > , ] # Atención a la coma y el espacio al final
 
   
@@ -116,9 +116,13 @@ Dividendos2$tot_acc.F <- cut(Dividendos2$tot_acc, breaks = breakPoints, labels =
 
 sapply(Dividendos2, function(Dividendos2) sum(is.na(Dividendos2)))
 
+#Para ver la cantidad de valores low, medium, high y very high
 data.frame(table(Dividendos2$tot_acc.F))
 
+#omitimos NA
 Dividendos2 <- na.omit(Dividendos2)
+
+
 
 tot_acc <- Dividendos2[Dividendos2$tot_acc < 100000000000, c("tot_acc")]
 
@@ -144,6 +148,7 @@ plot(tot_acc)
 ##usuario. Se puede hacer poniendo la variable «pasos» en función de la variable
 #«usuario».
 boxplot(Dividendos2$tot_acc ~ Dividendos2$nemo)
+
 
 ##Si ejecuto el sig codigo, se eliminan 2000 datos
 #Dividendos2<-Dividendos2[!(Dividendos2$tot_acc %in% Dividendos2_boxplot$out),]
@@ -210,4 +215,6 @@ Dividendos2 <- Dividendos2 %>% mutate( conversion_USD = tot_acc * val_USD)
 val_EURO = 931.30
 
 Dividendos2 <- Dividendos2 %>% mutate( conversion_EURO = tot_acc * val_EURO)
+
+OUTLIERS <- Dividendos2_boxplot$out
 
