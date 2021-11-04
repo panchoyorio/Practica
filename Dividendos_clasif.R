@@ -18,7 +18,7 @@ library(strucchange)
 library(quantmod)
 library(xts)
 library(Hmisc)
-
+library(dplyr)
 
 ###Se empieza a trabajar con la base que contiene P*Q, y que posee clasificaciones
 #por nombre de empresa
@@ -161,5 +161,34 @@ boxplot(tot_acc_EU, main = "Dividendos, en euros")
 ###Cuantos hay por moneda
 
 data.frame(table(Dividendos_clasif$moneda))
+
+#Experimentando con las fechas
+
+CLP_USD <- getFX( "USD/CLP", from = Sys.Date() - 360*2  , auto.assign = F ) 
+CLP_EUR <- getFX( "EUR/CLP", from = Sys.Date() - 360*2  , auto.assign = F ) 
+
+valorUSD <- last(CLP_USD)
+valorEUR <- last(CLP_EUR)
+
+#Dividendos_clasif %>% 
+#  filter(moneda  == "US$")
+
+#filter(Dividendos_clasif, moneda == "US$")
+
+Dividendos_clasif %>%
+  mutate(tot_acc_pesos = ifelse(moneda == "US$", tot_acc*valorUSD),
+                    ifelse(moneda == "EURO", tot_acc*valorEUR,
+                           ifelse(moneda == "$", tot_acc*1, NA)))
+
+
+
+Dividendos_clasif <- Dividendos_clasif %>% mutate(tot_acc_conv = case_when(moneda == "US$" ~ tot_acc*820.0848,
+                            moneda == "EURO" ~ tot_acc*948.5658,
+                            moneda == "$" ~ tot_acc*1,
+                            TRUE ~ NA_real_))
+
+
+valorUSD
+valorEUR
 
 
